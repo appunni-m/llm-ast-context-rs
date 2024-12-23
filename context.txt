@@ -1,0 +1,122 @@
+# Project Analysis
+
+## Project Overview
+Root Directory: .
+Total Files: 1
+Global Types: FunctionInfo, TypeDefinition, FunctionCallContext, ProjectContext, LLMContext, AstVisitor, TypeInfo, DependencyEdge, Args, FileContext, DependencyGraph, DependencyVisitor, ProjectOverview
+
+## Dependencies
+
+
+## Type References
+
+## File Analysis
+
+---
+# main
+Path: src/main.rs
+
+## Data Types
+### ProjectContext
+project_root: String, files: Vec<FileContext >, dependencies: HashMap<String , Vec<String>>, type_definitions: HashMap<String , TypeDefinition >
+### FileContext
+path: String, relative_path: String, module_name: String, functions: Vec<FunctionInfo >, structs: Vec<TypeInfo >, enums: Vec<TypeInfo >, traits: Vec<TypeInfo >, imports: Vec<String >, exports: Vec<String >, semantic_context: String
+### FunctionInfo
+name: String, signature: String, documentation: Option<String >, visibility: String, usage: String
+### TypeInfo
+name: String, kind: String, documentation: Option<String >, fields: Vec<String >
+### FunctionCallContext
+function_calls: Vec<String >, call_stack: HashSet<String >
+### LLMContext
+project_overview: ProjectOverview, files: Vec<FileContext >, dependencies: DependencyGraph, total_tokens: usize
+## Service Types
+### AstVisitor
+functions: Vec<FunctionInfo >, structs: Vec<TypeInfo >, enums: Vec<TypeInfo >, traits: Vec<TypeInfo >, imports: Vec<String >
+### DependencyVisitor
+uses: HashSet<String >, type_references: HashSet<String >
+## Utility Types
+### Args
+directory: String, output: String, verbose: bool, include_docs: bool
+### TypeDefinition
+file_path: String, definition: String, references: Vec<String >
+### ProjectOverview
+root: String, total_files: usize, global_types: Vec<String >
+### DependencyGraph
+nodes: Vec<String >, edges: Vec<DependencyEdge >, type_references: HashMap<String , Vec<String>>
+### DependencyEdge
+from: String, to: String, imports: Vec<String >
+## Functions
+
+### extract_function_usage
+extract_function_usage
+📝 node: node : & ItemFn . ty
+🔄 enter_function | traverse_block | exit_function (Recursive: false)
+### traverse_expr
+traverse_expr
+📝 expr: expr : & Expr . ty, context: context : & mut FunctionCallContext . ty
+🔄 traverse_block | traverse_block (Recursive: false)
+### traverse_block
+traverse_block
+📝 block: block : & syn :: Block . ty, context: context : & mut FunctionCallContext . ty
+🔄 traverse_stmt (Recursive: false)
+### traverse_stmt
+traverse_stmt
+📝 stmt: stmt : & Stmt . ty, context: context : & mut FunctionCallContext . ty
+🔄 traverse_expr (Recursive: false)
+### extract_doc_comments
+extract_doc_comments
+📝 attrs: attrs : & [syn :: Attribute] . ty
+🔄 filter_map | filter | is_empty (Recursive: false)
+### main
+main
+↩️ Result < () , io :: Error >
+🔄 parse | analyze_file | analyze_dependencies | to_llm_context | from | from | to_string_lossy | unwrap_or_else | diff_paths | or_default | entry | sort | filter | unwrap_or | get | to_string_lossy | unwrap_or_default | file_name | from | Ok (Recursive: false)
+### collect_rust_files
+collect_rust_files
+📝 directory: directory : & str . ty, verbose: verbose : bool . ty
+🔄 path | is_file | map_or | extension | unwrap_or | metadata | Ok (Recursive: false)
+### is_hidden_or_target
+is_hidden_or_target
+📝 path: path : & Path . ty
+↩️ bool
+🔄 any | components | to_string_lossy | as_os_str | starts_with (Recursive: false)
+### analyze_file
+analyze_file
+📝 file_path: file_path : & str . ty, args: args : & Args . ty
+↩️ Result < FileContext , syn :: Error >
+🔄 visit_file | from | trim_start_matches | to_string_lossy | Ok (Recursive: false)
+### is_internal_dep
+is_internal_dep
+📝 dep: dep : & str . ty
+↩️ bool
+🔄 (Recursive: false)
+### find_common_prefix
+find_common_prefix
+↩️ PathBuf
+🔄 from | from | as_os_str (Recursive: false)
+### analyze_dependencies
+analyze_dependencies
+📝 project_context: project_context : & mut ProjectContext . ty
+🔄 find_common_prefix | from | to_string_lossy | unwrap_or | strip_prefix | add_node | clone (Recursive: false)
+### write_dependencies
+write_dependencies
+📝 output_file: output_file : & mut File . ty, llm_context: llm_context : & LLMContext . ty
+↩️ io :: Result < () >
+🔄 from | all | from | trim_start_matches | unwrap_or | to_str | unwrap_or | strip_prefix | is_internal_dep | is_std_dep | or_default | entry | keys | sort | sort | Ok (Recursive: false)
+### is_std_dep
+is_std_dep
+📝 dep: dep : & str . ty
+↩️ bool
+🔄 starts_with | starts_with (Recursive: false)
+### extract_meaningful_usage
+extract_meaningful_usage
+📝 usage: usage : & str . ty
+🔄 lines | starts_with | starts_with | trim | starts_with | trim | starts_with | filter | are_related_calls | is_empty (Recursive: false)
+### are_related_calls
+are_related_calls
+📝 prev: prev : & str . ty, current: current : & str . ty
+↩️ bool
+🔄 (Recursive: false)
+
+
+Total Tokens: 0

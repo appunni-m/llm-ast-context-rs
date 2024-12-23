@@ -1,0 +1,21 @@
+[package]
+name = "astcli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "ast"
+path = "src/main.rs" # Path to your main file
+
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+syn = { version = "2.0", features = ["full", "visit"] }
+quote = "1.0"
+walkdir = "2.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+petgraph = "0.6"
+proc-macro2 = "1.0"
+tiktoken-rs = "0.6.0"
+pathdiff = "0.2"
