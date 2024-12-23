@@ -1,6 +1,8 @@
 # llm-ast-context-rs
 For generating Rust context file for LLM based code editor.
 
+Pre requisite: cargo and rust
+
 First install using 
 
 ./install.sh
